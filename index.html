@@ -6,6 +6,16 @@
 <title>Shadow Dash</title>
 <meta name="description" content="Shadow Dash - a fast neon endless runner. Dodge, slide, collect coins and outrun the night.">
 <meta name="theme-color" content="#05060d">
+<link rel="canonical" href="https://pulkitkhatter.github.io/shadow-dash/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Shadow Dash - neon endless runner">
+<meta property="og:description" content="Dodge, slide and double-jump through a neon night city. Free, plays in your browser. Can you beat my score?">
+<meta property="og:url" content="https://pulkitkhatter.github.io/shadow-dash/">
+<meta property="og:image" content="https://pulkitkhatter.github.io/shadow-dash/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Shadow Dash - neon endless runner">
+<meta name="twitter:description" content="Free browser game. Dodge, slide, collect coins, unlock skins. Can you beat my score?">
+<meta name="twitter:image" content="https://pulkitkhatter.github.io/shadow-dash/og-image.png">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -78,13 +88,13 @@ let musicT = 0, musicI = 0;
 
 /* =====================  LANGUAGES  ===================== */
 const STR = {
-  en: { name:'EN', world:'WORLD TOP 3', localBoard:'YOUR TOP 3', namePrompt:'Enter your name for the world ranking (max 12 characters):', tag:'Outrun the night. Dodge, slide, survive.', start:'TAP  /  PRESS SPACE TO START', jump:'JUMP (x2):  Space / ↑ / W / tap right side', slide:'SLIDE:  ↓ / S / tap left side      PAUSE: P', equipped:'EQUIPPED', equip:'TAP TO EQUIP', unlock:'UNLOCK', coins:'COINS', best:'BEST', paused:'PAUSED', resume:'Press P or tap to resume', over:'GAME OVER', score:'SCORE', newbest:'★ NEW BEST! ★', gained:'Coins', wallet:'Wallet', loading:'LOADING AD…', revive:'▶  REVIVE  (WATCH AD)', retry:'TAP / SPACE TO RETRY', shield:'SHIELD', magnet:'MAGNET', shieldT:'SHIELD!', magnetT:'MAGNET!', broke:'SHIELD BROKE', revived:'REVIVED!', need:'NEED {n} MORE COINS', unlocked:'{s} UNLOCKED!' },
-  hi: { name:'हिं', world:'विश्व के टॉप 3', localBoard:'आपके टॉप 3', namePrompt:'विश्व रैंकिंग के लिए अपना नाम लिखें (अधिकतम 12 अक्षर):', tag:'रात से तेज़ दौड़ो। बचो, फिसलो, जीते रहो।', start:'शुरू करने के लिए टैप करें / Space दबाएँ', jump:'कूदें (x2):  Space / ↑ / W / दाएँ टैप', slide:'फिसलें:  ↓ / S / बाएँ टैप      रोकें: P', equipped:'चुना हुआ', equip:'चुनने के लिए टैप करें', unlock:'अनलॉक', coins:'सिक्के', best:'सर्वश्रेष्ठ', paused:'रुका हुआ', resume:'जारी रखने के लिए P दबाएँ या टैप करें', over:'गेम ओवर', score:'स्कोर', newbest:'★ नया रिकॉर्ड! ★', gained:'सिक्के', wallet:'कुल', loading:'विज्ञापन लोड हो रहा है…', revive:'▶  दोबारा खेलें (विज्ञापन देखें)', retry:'फिर खेलने के लिए टैप करें', shield:'शील्ड', magnet:'चुंबक', shieldT:'शील्ड!', magnetT:'चुंबक!', broke:'शील्ड टूटी', revived:'वापसी!', need:'{n} और सिक्के चाहिए', unlocked:'{s} अनलॉक!' },
-  es: { name:'ES', world:'TOP 3 MUNDIAL', localBoard:'TUS TOP 3', namePrompt:'Escribe tu nombre para el ranking mundial (máx. 12):', tag:'Corre más que la noche. Esquiva, desliza, sobrevive.', start:'TOCA / PULSA ESPACIO PARA EMPEZAR', jump:'SALTAR (x2):  Espacio / ↑ / W / toca a la derecha', slide:'DESLIZAR:  ↓ / S / toca a la izquierda      PAUSA: P', equipped:'EQUIPADO', equip:'TOCA PARA EQUIPAR', unlock:'DESBLOQUEAR', coins:'MONEDAS', best:'MEJOR', paused:'PAUSA', resume:'Pulsa P o toca para continuar', over:'FIN DEL JUEGO', score:'PUNTOS', newbest:'★ ¡NUEVO RÉCORD! ★', gained:'Monedas', wallet:'Total', loading:'CARGANDO ANUNCIO…', revive:'▶  REVIVIR  (VER ANUNCIO)', retry:'TOCA / ESPACIO PARA REINTENTAR', shield:'ESCUDO', magnet:'IMÁN', shieldT:'¡ESCUDO!', magnetT:'¡IMÁN!', broke:'ESCUDO ROTO', revived:'¡REVIVIDO!', need:'FALTAN {n} MONEDAS', unlocked:'¡{s} DESBLOQUEADO!' },
-  pt: { name:'PT', world:'TOP 3 MUNDIAL', localBoard:'SEUS TOP 3', namePrompt:'Digite seu nome para o ranking mundial (máx. 12):', tag:'Corra mais que a noite. Desvie, deslize, sobreviva.', start:'TOQUE / PRESSIONE ESPAÇO PARA COMEÇAR', jump:'PULAR (x2):  Espaço / ↑ / W / toque à direita', slide:'DESLIZAR:  ↓ / S / toque à esquerda      PAUSA: P', equipped:'EQUIPADO', equip:'TOQUE PARA EQUIPAR', unlock:'DESBLOQUEAR', coins:'MOEDAS', best:'RECORDE', paused:'PAUSADO', resume:'Pressione P ou toque para continuar', over:'FIM DE JOGO', score:'PONTOS', newbest:'★ NOVO RECORDE! ★', gained:'Moedas', wallet:'Total', loading:'CARREGANDO ANÚNCIO…', revive:'▶  REVIVER  (VER ANÚNCIO)', retry:'TOQUE / ESPAÇO PARA TENTAR DE NOVO', shield:'ESCUDO', magnet:'ÍMÃ', shieldT:'ESCUDO!', magnetT:'ÍMÃ!', broke:'ESCUDO QUEBRADO', revived:'REVIVIDO!', need:'FALTAM {n} MOEDAS', unlocked:'{s} DESBLOQUEADO!' },
-  fr: { name:'FR', world:'TOP 3 MONDIAL', localBoard:'TON TOP 3', namePrompt:'Entre ton nom pour le classement mondial (12 max) :', tag:'Cours plus vite que la nuit. Esquive, glisse, survis.', start:'TOUCHE / APPUIE SUR ESPACE POUR JOUER', jump:'SAUTER (x2) :  Espace / ↑ / W / touche à droite', slide:'GLISSER :  ↓ / S / touche à gauche      PAUSE : P', equipped:'ÉQUIPÉ', equip:'TOUCHE POUR ÉQUIPER', unlock:'DÉBLOQUER', coins:'PIÈCES', best:'RECORD', paused:'PAUSE', resume:'Appuie sur P ou touche pour reprendre', over:'PARTIE TERMINÉE', score:'SCORE', newbest:'★ NOUVEAU RECORD ! ★', gained:'Pièces', wallet:'Total', loading:'CHARGEMENT DE LA PUB…', revive:'▶  REVIVRE  (VOIR UNE PUB)', retry:'TOUCHE / ESPACE POUR REJOUER', shield:'BOUCLIER', magnet:'AIMANT', shieldT:'BOUCLIER !', magnetT:'AIMANT !', broke:'BOUCLIER BRISÉ', revived:'REVENU !', need:'IL MANQUE {n} PIÈCES', unlocked:'{s} DÉBLOQUÉ !' },
-  de: { name:'DE', world:'WELT-TOP-3', localBoard:'DEINE TOP 3', namePrompt:'Gib deinen Namen für die Weltrangliste ein (max. 12):', tag:'Lauf der Nacht davon. Ausweichen, rutschen, überleben.', start:'TIPPEN / LEERTASTE ZUM STARTEN', jump:'SPRINGEN (x2):  Leertaste / ↑ / W / rechts tippen', slide:'RUTSCHEN:  ↓ / S / links tippen      PAUSE: P', equipped:'AUSGERÜSTET', equip:'TIPPEN ZUM AUSRÜSTEN', unlock:'FREISCHALTEN', coins:'MÜNZEN', best:'REKORD', paused:'PAUSE', resume:'P drücken oder tippen zum Fortsetzen', over:'SPIEL VORBEI', score:'PUNKTE', newbest:'★ NEUER REKORD! ★', gained:'Münzen', wallet:'Gesamt', loading:'WERBUNG LÄDT…', revive:'▶  WIEDERBELEBEN  (WERBUNG)', retry:'TIPPEN / LEERTASTE: NOCHMAL', shield:'SCHILD', magnet:'MAGNET', shieldT:'SCHILD!', magnetT:'MAGNET!', broke:'SCHILD ZERBROCHEN', revived:'WIEDERBELEBT!', need:'NOCH {n} MÜNZEN', unlocked:'{s} FREIGESCHALTET!' },
-  id: { name:'ID', world:'TOP 3 DUNIA', localBoard:'TOP 3 KAMU', namePrompt:'Masukkan namamu untuk peringkat dunia (maks. 12):', tag:'Lari dari malam. Hindari, meluncur, bertahan.', start:'KETUK / TEKAN SPASI UNTUK MULAI', jump:'LOMPAT (x2):  Spasi / ↑ / W / ketuk kanan', slide:'MELUNCUR:  ↓ / S / ketuk kiri      JEDA: P', equipped:'DIPAKAI', equip:'KETUK UNTUK PAKAI', unlock:'BUKA', coins:'KOIN', best:'TERBAIK', paused:'JEDA', resume:'Tekan P atau ketuk untuk lanjut', over:'GAME OVER', score:'SKOR', newbest:'★ REKOR BARU! ★', gained:'Koin', wallet:'Total', loading:'MEMUAT IKLAN…', revive:'▶  HIDUP LAGI  (LIHAT IKLAN)', retry:'KETUK / SPASI UNTUK ULANG', shield:'PERISAI', magnet:'MAGNET', shieldT:'PERISAI!', magnetT:'MAGNET!', broke:'PERISAI PECAH', revived:'HIDUP LAGI!', need:'KURANG {n} KOIN', unlocked:'{s} TERBUKA!' }
+  en: { name:'EN', share:'SHARE', copied:'LINK COPIED!', shareText:'I scored {n} in Shadow Dash! Can you beat me?', world:'WORLD TOP 3', localBoard:'YOUR TOP 3', namePrompt:'Enter your name for the world ranking (max 12 characters):', tag:'Outrun the night. Dodge, slide, survive.', start:'TAP  /  PRESS SPACE TO START', jump:'JUMP (x2):  Space / ↑ / W / tap right side', slide:'SLIDE:  ↓ / S / tap left side      PAUSE: P', equipped:'EQUIPPED', equip:'TAP TO EQUIP', unlock:'UNLOCK', coins:'COINS', best:'BEST', paused:'PAUSED', resume:'Press P or tap to resume', over:'GAME OVER', score:'SCORE', newbest:'★ NEW BEST! ★', gained:'Coins', wallet:'Wallet', loading:'LOADING AD…', revive:'▶  REVIVE  (WATCH AD)', retry:'TAP / SPACE TO RETRY', shield:'SHIELD', magnet:'MAGNET', shieldT:'SHIELD!', magnetT:'MAGNET!', broke:'SHIELD BROKE', revived:'REVIVED!', need:'NEED {n} MORE COINS', unlocked:'{s} UNLOCKED!' },
+  hi: { name:'हिं', share:'शेयर करें', copied:'लिंक कॉपी हुआ!', shareText:'मैंने Shadow Dash में {n} स्कोर किया! क्या तुम हरा सकते हो?', world:'विश्व के टॉप 3', localBoard:'आपके टॉप 3', namePrompt:'विश्व रैंकिंग के लिए अपना नाम लिखें (अधिकतम 12 अक्षर):', tag:'रात से तेज़ दौड़ो। बचो, फिसलो, जीते रहो।', start:'शुरू करने के लिए टैप करें / Space दबाएँ', jump:'कूदें (x2):  Space / ↑ / W / दाएँ टैप', slide:'फिसलें:  ↓ / S / बाएँ टैप      रोकें: P', equipped:'चुना हुआ', equip:'चुनने के लिए टैप करें', unlock:'अनलॉक', coins:'सिक्के', best:'सर्वश्रेष्ठ', paused:'रुका हुआ', resume:'जारी रखने के लिए P दबाएँ या टैप करें', over:'गेम ओवर', score:'स्कोर', newbest:'★ नया रिकॉर्ड! ★', gained:'सिक्के', wallet:'कुल', loading:'विज्ञापन लोड हो रहा है…', revive:'▶  दोबारा खेलें (विज्ञापन देखें)', retry:'फिर खेलने के लिए टैप करें', shield:'शील्ड', magnet:'चुंबक', shieldT:'शील्ड!', magnetT:'चुंबक!', broke:'शील्ड टूटी', revived:'वापसी!', need:'{n} और सिक्के चाहिए', unlocked:'{s} अनलॉक!' },
+  es: { name:'ES', share:'COMPARTIR', copied:'¡ENLACE COPIADO!', shareText:'¡Hice {n} puntos en Shadow Dash! ¿Puedes superarme?', world:'TOP 3 MUNDIAL', localBoard:'TUS TOP 3', namePrompt:'Escribe tu nombre para el ranking mundial (máx. 12):', tag:'Corre más que la noche. Esquiva, desliza, sobrevive.', start:'TOCA / PULSA ESPACIO PARA EMPEZAR', jump:'SALTAR (x2):  Espacio / ↑ / W / toca a la derecha', slide:'DESLIZAR:  ↓ / S / toca a la izquierda      PAUSA: P', equipped:'EQUIPADO', equip:'TOCA PARA EQUIPAR', unlock:'DESBLOQUEAR', coins:'MONEDAS', best:'MEJOR', paused:'PAUSA', resume:'Pulsa P o toca para continuar', over:'FIN DEL JUEGO', score:'PUNTOS', newbest:'★ ¡NUEVO RÉCORD! ★', gained:'Monedas', wallet:'Total', loading:'CARGANDO ANUNCIO…', revive:'▶  REVIVIR  (VER ANUNCIO)', retry:'TOCA / ESPACIO PARA REINTENTAR', shield:'ESCUDO', magnet:'IMÁN', shieldT:'¡ESCUDO!', magnetT:'¡IMÁN!', broke:'ESCUDO ROTO', revived:'¡REVIVIDO!', need:'FALTAN {n} MONEDAS', unlocked:'¡{s} DESBLOQUEADO!' },
+  pt: { name:'PT', share:'COMPARTILHAR', copied:'LINK COPIADO!', shareText:'Fiz {n} pontos no Shadow Dash! Consegue me superar?', world:'TOP 3 MUNDIAL', localBoard:'SEUS TOP 3', namePrompt:'Digite seu nome para o ranking mundial (máx. 12):', tag:'Corra mais que a noite. Desvie, deslize, sobreviva.', start:'TOQUE / PRESSIONE ESPAÇO PARA COMEÇAR', jump:'PULAR (x2):  Espaço / ↑ / W / toque à direita', slide:'DESLIZAR:  ↓ / S / toque à esquerda      PAUSA: P', equipped:'EQUIPADO', equip:'TOQUE PARA EQUIPAR', unlock:'DESBLOQUEAR', coins:'MOEDAS', best:'RECORDE', paused:'PAUSADO', resume:'Pressione P ou toque para continuar', over:'FIM DE JOGO', score:'PONTOS', newbest:'★ NOVO RECORDE! ★', gained:'Moedas', wallet:'Total', loading:'CARREGANDO ANÚNCIO…', revive:'▶  REVIVER  (VER ANÚNCIO)', retry:'TOQUE / ESPAÇO PARA TENTAR DE NOVO', shield:'ESCUDO', magnet:'ÍMÃ', shieldT:'ESCUDO!', magnetT:'ÍMÃ!', broke:'ESCUDO QUEBRADO', revived:'REVIVIDO!', need:'FALTAM {n} MOEDAS', unlocked:'{s} DESBLOQUEADO!' },
+  fr: { name:'FR', share:'PARTAGER', copied:'LIEN COPIÉ !', shareText:'J\'ai fait {n} points à Shadow Dash ! Tu peux me battre ?', world:'TOP 3 MONDIAL', localBoard:'TON TOP 3', namePrompt:'Entre ton nom pour le classement mondial (12 max) :', tag:'Cours plus vite que la nuit. Esquive, glisse, survis.', start:'TOUCHE / APPUIE SUR ESPACE POUR JOUER', jump:'SAUTER (x2) :  Espace / ↑ / W / touche à droite', slide:'GLISSER :  ↓ / S / touche à gauche      PAUSE : P', equipped:'ÉQUIPÉ', equip:'TOUCHE POUR ÉQUIPER', unlock:'DÉBLOQUER', coins:'PIÈCES', best:'RECORD', paused:'PAUSE', resume:'Appuie sur P ou touche pour reprendre', over:'PARTIE TERMINÉE', score:'SCORE', newbest:'★ NOUVEAU RECORD ! ★', gained:'Pièces', wallet:'Total', loading:'CHARGEMENT DE LA PUB…', revive:'▶  REVIVRE  (VOIR UNE PUB)', retry:'TOUCHE / ESPACE POUR REJOUER', shield:'BOUCLIER', magnet:'AIMANT', shieldT:'BOUCLIER !', magnetT:'AIMANT !', broke:'BOUCLIER BRISÉ', revived:'REVENU !', need:'IL MANQUE {n} PIÈCES', unlocked:'{s} DÉBLOQUÉ !' },
+  de: { name:'DE', share:'TEILEN', copied:'LINK KOPIERT!', shareText:'Ich habe {n} Punkte in Shadow Dash! Schaffst du mehr?', world:'WELT-TOP-3', localBoard:'DEINE TOP 3', namePrompt:'Gib deinen Namen für die Weltrangliste ein (max. 12):', tag:'Lauf der Nacht davon. Ausweichen, rutschen, überleben.', start:'TIPPEN / LEERTASTE ZUM STARTEN', jump:'SPRINGEN (x2):  Leertaste / ↑ / W / rechts tippen', slide:'RUTSCHEN:  ↓ / S / links tippen      PAUSE: P', equipped:'AUSGERÜSTET', equip:'TIPPEN ZUM AUSRÜSTEN', unlock:'FREISCHALTEN', coins:'MÜNZEN', best:'REKORD', paused:'PAUSE', resume:'P drücken oder tippen zum Fortsetzen', over:'SPIEL VORBEI', score:'PUNKTE', newbest:'★ NEUER REKORD! ★', gained:'Münzen', wallet:'Gesamt', loading:'WERBUNG LÄDT…', revive:'▶  WIEDERBELEBEN  (WERBUNG)', retry:'TIPPEN / LEERTASTE: NOCHMAL', shield:'SCHILD', magnet:'MAGNET', shieldT:'SCHILD!', magnetT:'MAGNET!', broke:'SCHILD ZERBROCHEN', revived:'WIEDERBELEBT!', need:'NOCH {n} MÜNZEN', unlocked:'{s} FREIGESCHALTET!' },
+  id: { name:'ID', share:'BAGIKAN', copied:'TAUTAN DISALIN!', shareText:'Skorku {n} di Shadow Dash! Bisa mengalahkanku?', world:'TOP 3 DUNIA', localBoard:'TOP 3 KAMU', namePrompt:'Masukkan namamu untuk peringkat dunia (maks. 12):', tag:'Lari dari malam. Hindari, meluncur, bertahan.', start:'KETUK / TEKAN SPASI UNTUK MULAI', jump:'LOMPAT (x2):  Spasi / ↑ / W / ketuk kanan', slide:'MELUNCUR:  ↓ / S / ketuk kiri      JEDA: P', equipped:'DIPAKAI', equip:'KETUK UNTUK PAKAI', unlock:'BUKA', coins:'KOIN', best:'TERBAIK', paused:'JEDA', resume:'Tekan P atau ketuk untuk lanjut', over:'GAME OVER', score:'SKOR', newbest:'★ REKOR BARU! ★', gained:'Koin', wallet:'Total', loading:'MEMUAT IKLAN…', revive:'▶  HIDUP LAGI  (LIHAT IKLAN)', retry:'KETUK / SPASI UNTUK ULANG', shield:'PERISAI', magnet:'MAGNET', shieldT:'PERISAI!', magnetT:'MAGNET!', broke:'PERISAI PECAH', revived:'HIDUP LAGI!', need:'KURANG {n} KOIN', unlocked:'{s} TERBUKA!' }
 };
 const LANG_LIST = Object.keys(STR);
 let lang = load('_lang', '');
@@ -221,6 +231,13 @@ function onScore() {
   if (newBest && boardUrl()) {
     setTimeout(() => { if (!playerName) askName(() => submitScore(sc)); else submitScore(sc); }, 700);
   } else fetchBoard();
+}
+const GAME_URL = 'https://pulkitkhatter.github.io/shadow-dash/';
+function shareScore() {
+  const msg = T('shareText', { n: score });
+  if (navigator.share) { navigator.share({ title: 'Shadow Dash', text: msg, url: GAME_URL }).catch(() => {}); return; }
+  const full = msg + ' ' + GAME_URL;
+  try { navigator.clipboard.writeText(full).then(() => say(T('copied'))).catch(() => say(GAME_URL)); } catch (e) { say(GAME_URL); }
 }
 const BOARDBOX = { x: 24, y: 150, w: 212, h: 108 };
 function drawBoard() {
@@ -642,6 +659,7 @@ function panel(x, y, w, h) {
 const MUTE = { x: W - 56, y: 12, w: 44, h: 34 };
 const SKINROW = { y: 434, h: 44 };
 const LANGBTN = { x: W - 118, y: 12, w: 56, h: 34 };
+const SHAREBTN = { x: 730, y: 150, w: 190, h: 44 };
 const REVIVE = { x: W / 2 - 150, y: 322, w: 300, h: 44 };
 function drawHud() {
   const sc = 1 + hudPulse * 0.25;
@@ -718,6 +736,9 @@ function draw() {
       ctx.strokeStyle = '#7dffb2'; ctx.lineWidth = 2; ctx.strokeRect(REVIVE.x, REVIVE.y, REVIVE.w, REVIVE.h);
       text(Ads.busy ? T('loading') : T('revive'), W / 2, REVIVE.y + 22, 19, '#fff');
     }
+    ctx.fillStyle = '#ff2d55'; ctx.fillRect(SHAREBTN.x, SHAREBTN.y, SHAREBTN.w, SHAREBTN.h);
+    ctx.strokeStyle = '#fff'; ctx.lineWidth = 2; ctx.strokeRect(SHAREBTN.x, SHAREBTN.y, SHAREBTN.w, SHAREBTN.h);
+    text('↗ ' + T('share'), SHAREBTN.x + SHAREBTN.w / 2, SHAREBTN.y + 23, 19, '#fff');
     if (overT > 0.9) { ctx.globalAlpha = k * (0.55 + 0.45 * Math.sin(time * 5)); text(T('retry'), W / 2, 394, 22, '#fff'); }
     ctx.globalAlpha = 1;
   }
@@ -782,6 +803,7 @@ cv.addEventListener('pointerdown', e => {
       return;
     }
   }
+  if (state === 'over' && overT > 0.6 && inR(SHAREBTN)) { shareScore(); return; }
   if (state === 'over' && overT > 0.6 && !revived && Ads.rewardedReady() && inR(REVIVE)) { revive(); return; }
   action(x < W * 0.35 && state === 'play' ? 'slide' : 'jump');
 });
@@ -807,6 +829,8 @@ if (!IN_APP && 'serviceWorker' in navigator && /^https?:/.test(location.protocol
 // tiny debug/test hook (harmless in production)
 window.__shadowDash = { get state() { return state; }, get score() { return score; }, action,
   _fetchBoard: () => fetchBoard(), _board: () => board,
+  _peek: () => ({ px: player.x, speed, onGround: player.onGround, jumps: player.jumps, state,
+                  obs: obs.map(o => ({ t: o.type, x: o.x, w: o.w })) }),
   _demo() { obs.push({ type: 'wall', w: 40, h: 128, x: 700, y: GROUND - 128 });
             pickups.push({ type: 'shield', x: 420, y: GROUND - 80, ph: 0 }, { type: 'magnet', x: 560, y: GROUND - 80, ph: 1 }); } };
 })();
