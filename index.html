@@ -64,8 +64,9 @@ function audio() {
   if (!AC) { try { AC = new (window.AudioContext || window.webkitAudioContext)(); } catch (e) {} }
   if (AC && AC.state === 'suspended') AC.resume();
 }
+let adMute = false;                 // game sounds are silenced while an ad plays (portals require this)
 function tone(f1, f2, dur, type = 'square', vol = 0.1) {
-  if (muted || !AC) return;
+  if (muted || adMute || !AC) return;
   const t = AC.currentTime, o = AC.createOscillator(), g = AC.createGain();
   o.type = type;
   o.frequency.setValueAtTime(f1, t);
@@ -477,14 +478,14 @@ const Ads = {
     return typeof s.isRewardedReady === 'function' ? !!s.isRewardedReady() : true;
   },
   showRewarded(done) {
-    this.busy = true; const fin = ok => { this.busy = false; this.last = Date.now(); done(!!ok); };
+    this.busy = true; adMute = true; const fin = ok => { this.busy = false; adMute = false; this.last = Date.now(); done(!!ok); };
     if (this.test) return setTimeout(() => fin(true), 400);
     try { window.AdSDK.showRewarded(fin); } catch (e) { fin(false); }
   },
   showInterstitial(done) {
     const ready = this.test || (window.AdSDK && typeof window.AdSDK.showInterstitial === 'function');
     if (!ready || Date.now() - this.last < 90000) return done();
-    this.busy = true; const fin = () => { this.busy = false; this.last = Date.now(); done(); };
+    this.busy = true; adMute = true; const fin = () => { this.busy = false; adMute = false; this.last = Date.now(); done(); };
     if (this.test) return setTimeout(fin, 400);
     try { window.AdSDK.showInterstitial(fin); } catch (e) { fin(); }
   }
@@ -736,9 +737,11 @@ function draw() {
       ctx.strokeStyle = '#7dffb2'; ctx.lineWidth = 2; ctx.strokeRect(REVIVE.x, REVIVE.y, REVIVE.w, REVIVE.h);
       text(Ads.busy ? T('loading') : T('revive'), W / 2, REVIVE.y + 22, 19, '#fff');
     }
-    ctx.fillStyle = '#ff2d55'; ctx.fillRect(SHAREBTN.x, SHAREBTN.y, SHAREBTN.w, SHAREBTN.h);
-    ctx.strokeStyle = '#fff'; ctx.lineWidth = 2; ctx.strokeRect(SHAREBTN.x, SHAREBTN.y, SHAREBTN.w, SHAREBTN.h);
-    text('↗ ' + T('share'), SHAREBTN.x + SHAREBTN.w / 2, SHAREBTN.y + 23, 19, '#fff');
+    if (!window.SD_PORTAL) {            // portals (CrazyGames etc.) don't allow outbound share links
+      ctx.fillStyle = '#ff2d55'; ctx.fillRect(SHAREBTN.x, SHAREBTN.y, SHAREBTN.w, SHAREBTN.h);
+      ctx.strokeStyle = '#fff'; ctx.lineWidth = 2; ctx.strokeRect(SHAREBTN.x, SHAREBTN.y, SHAREBTN.w, SHAREBTN.h);
+      text('↗ ' + T('share'), SHAREBTN.x + SHAREBTN.w / 2, SHAREBTN.y + 23, 19, '#fff');
+    }
     if (overT > 0.9) { ctx.globalAlpha = k * (0.55 + 0.45 * Math.sin(time * 5)); text(T('retry'), W / 2, 394, 22, '#fff'); }
     ctx.globalAlpha = 1;
   }
@@ -803,7 +806,7 @@ cv.addEventListener('pointerdown', e => {
       return;
     }
   }
-  if (state === 'over' && overT > 0.6 && inR(SHAREBTN)) { shareScore(); return; }
+  if (state === 'over' && overT > 0.6 && !window.SD_PORTAL && inR(SHAREBTN)) { shareScore(); return; }
   if (state === 'over' && overT > 0.6 && !revived && Ads.rewardedReady() && inR(REVIVE)) { revive(); return; }
   action(x < W * 0.35 && state === 'play' ? 'slide' : 'jump');
 });
